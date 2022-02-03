@@ -28,6 +28,7 @@ class infoFeelim : AppCompatActivity() {
     lateinit var removeFeelim: TextView
     lateinit var addFeelim: Button
     lateinit var detail_mv: TextView
+    lateinit var myfeelimTitle: TextView
 
     lateinit var edtMovieTitle: EditText
     lateinit var edtStartDate: TextView
@@ -55,6 +56,7 @@ class infoFeelim : AppCompatActivity() {
         addFeelim = findViewById(R.id.addFeelim)
         removeFeelim = findViewById(R.id.removeFeelim)
         detail_mv = findViewById(R.id.detail_mv)
+        myfeelimTitle = findViewById(R.id.myfeelimTitle)
 
         edtMovieTitle = findViewById(R.id.edtMovieTitle)
         edtStartDate = findViewById(R.id.edtStartDate)
@@ -147,6 +149,7 @@ class infoFeelim : AppCompatActivity() {
 
         // 별점
         edtScore.rating = FdbScore.toFloat()
+        starNum = "${edtScore.rating}"
 
         edtScore.setOnRatingBarChangeListener { _, rating, _ ->
             edtScore.rating = rating
@@ -188,9 +191,12 @@ class infoFeelim : AppCompatActivity() {
                     + edtFinishDate.text.toString() + "','"
                     + genreS.toInt() + "','"
                     + starNum + "','"
-                    + placeS.toInt()
+                    + placeS.toInt() + "','"
+                    + ""
                     + "');") // DB에 저장 (제목, 시작날짜, 종료날짜, 장르, 평점, 장소/플랫폼)
             sqlDB.close()
+
+            FdbMovieTitle = edtMovieTitle.text.toString()
 
             Toast.makeText(applicationContext,"수정되었습니다.", Toast.LENGTH_SHORT).show()
         }
@@ -214,6 +220,12 @@ class infoFeelim : AppCompatActivity() {
         detail_mv.setOnClickListener {
             val intent = Intent(this, moreInfo::class.java)
             intent.putExtra("intent_name", edtMovieTitle.text.toString())
+            startActivity(intent)
+        }
+
+        // myFeelim으로 이동
+        myfeelimTitle.setOnClickListener {
+            val intent = Intent(this, myFeelim::class.java)
             startActivity(intent)
         }
     }

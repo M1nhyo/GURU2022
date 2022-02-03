@@ -18,6 +18,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.annotation.Dimension
 import androidx.core.content.withStyledAttributes
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.techtown.feelim.DBManager
 import org.techtown.feelim.MainActivity
 import org.techtown.feelim.R
@@ -27,9 +28,18 @@ class myFeelim : AppCompatActivity() {
     lateinit var sqlitedb: SQLiteDatabase
     lateinit var layout: LinearLayout
 
+    lateinit var fab_btn: FloatingActionButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_feelim)
+
+        // floating button 리뷰 작성 창으로  // 버튼 클릭시 글쓰기 창으로 이동
+        fab_btn=findViewById(R.id.fab_btn)
+        fab_btn.setOnClickListener{
+            val intent = Intent(this, newFeelim::class.java)
+            startActivity(intent)
+        }
 
         dbManager = DBManager(this, "movieList", null, 1)
         sqlitedb = dbManager.readableDatabase
@@ -51,7 +61,6 @@ class myFeelim : AppCompatActivity() {
             var FdbStartDate = cursor.getString(cursor.getColumnIndex("mvStartDate")).toString()
             var FdbFinishDate = cursor.getString(cursor.getColumnIndex("mvFinishDate")).toString()
             var FdbGenre = cursor.getInt(cursor.getColumnIndex("mvGenre")).toInt()
-            var FdbPlace = cursor.getInt(cursor.getColumnIndex("mvPlace")).toInt()
             var FdbScore = cursor.getString(cursor.getColumnIndex("mvScore")).toString()
             var FdbMemo= cursor.getString(cursor.getColumnIndex("myMemo")).toString()
 
@@ -79,7 +88,7 @@ class myFeelim : AppCompatActivity() {
             layout_item_01.addView(tvMovieTitle)
             tvMovieTitle.setTextColor(Color.parseColor("#46BC8F"))
             tvMovieTitle.setTextSize(Dimension.SP, 14F)
-            tvMovieTitle.setPadding(40,20,0,0)
+            tvMovieTitle.setPadding(40, 20, 0, 0)
             tvMovieTitle.setTypeface(tvMovieTitle.typeface, Typeface.BOLD)
             num2++
 
@@ -89,22 +98,23 @@ class myFeelim : AppCompatActivity() {
             layout_item_01.addView(tvGenre)
             tvGenre.setTextColor(Color.parseColor("#CDCDCD"))
             tvGenre.setTextSize(Dimension.SP, 10F)
-            tvGenre.setPadding(20,20,0,0)
+            tvGenre.setPadding(20, 20, 0, 0)
             num2++
 
-            //var tvScore = RatingBar(this)
-            //tvScore.rating = FdbScore.toFloat()
-            //layout_item_01.addView(tvScore)
-            //tvScore.setPadding(20,20,0,0)
-            //num2++
-
+            var tvScore: TextView = TextView(this)
+            tvScore.text = "☆ " +FdbScore
+            layout_item_01.addView(tvScore)
+            tvScore.setTextColor(Color.WHITE)
+            tvScore.setTextSize(Dimension.SP, 12F)
+            tvScore.setPadding(20,20,0,0)
+            num2++
 
             var tvDate: TextView = TextView(this)
             tvDate.text = FdbStartDate + " ~ " + FdbFinishDate
             layout_item_02.addView(tvDate)
             tvDate.setTextColor(Color.WHITE)
-            tvDate.setTextSize(Dimension.SP,12F)
-            tvDate.setPadding(40,20,0,20)
+            tvDate.setTextSize(Dimension.SP, 12F)
+            tvDate.setPadding(40, 20, 0, 20)
             num3++
 
             // 감상평 개수 추가
@@ -112,8 +122,8 @@ class myFeelim : AppCompatActivity() {
             tvReview.text = "n개의 감상평"
             layout_item_02.addView(tvReview)
             tvReview.setTextColor(Color.WHITE)
-            tvReview.setTextSize(Dimension.SP,12F)
-            tvReview.setPadding(20,20,0,20)
+            tvReview.setTextSize(Dimension.SP, 12F)
+            tvReview.setPadding(20, 20, 0, 20)
             num3++
 
 
@@ -132,8 +142,6 @@ class myFeelim : AppCompatActivity() {
         sqlitedb.close()
         dbManager.close()
     }
-
-
 
 
     //메뉴 추가
@@ -155,10 +163,9 @@ class myFeelim : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-            else ->super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
+
     }
-
-
 }
 

@@ -134,6 +134,7 @@ class newFeelim : AppCompatActivity() {
             }
         }
 
+        starNum = "${edtScore.rating}"
         // 별점
         edtScore.setOnRatingBarChangeListener { _, rating, _ ->
             edtScore.rating = rating

@@ -14,17 +14,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp">
 
         <TextView
-            android:id="@+id/newFeelim"
+            android:id="@+id/myfeelimTitle"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="16dp"
             android:gravity="top"
-            android:text="NEW FEEL:IM"
+            android:text="MY FEEL:IM"
             android:textColor="#46BC8F"
             android:textSize="14sp"
             android:fontFamily="@font/scdream6" />
@@ -49,7 +50,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         >
         <LinearLayout
@@ -61,7 +61,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="12dp">
@@ -95,7 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="8dp">
 
                     <TextView
                         android:id="@+id/startDate"
