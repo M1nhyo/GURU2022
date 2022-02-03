@@ -11,7 +11,7 @@ class DBManager (
     version: Int
     ) : SQLiteOpenHelper(context, name, factory, version) {
         override fun onCreate(db: SQLiteDatabase?) {
-            db!!.execSQL("CREATE TABLE movieList (mvTitle CHAR(20) PRIMARY KEY, mvStartDate CHAR, mvFinishDate CHAR, mvGenre CHAR, mvScore CHAR, mvPlace CHAR);")
+            db!!.execSQL("CREATE TABLE movieList (mvTitle CHAR(20) PRIMARY KEY, mvStartDate CHAR, mvFinishDate CHAR, mvGenre CHAR, mvScore CHAR, mvPlace CHAR, myMemo CHAR);")
         }
 
         override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

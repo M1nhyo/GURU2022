@@ -18,6 +18,16 @@ class newFeelim : AppCompatActivity() {
     var starNum = ""
     var genreS = 0
     var placeS = 0
+    // 감상평 변수선언
+    lateinit var listview1 :ListView
+    lateinit var button1:Button
+    lateinit var button2:Button
+    lateinit var button3:Button
+    lateinit var button4:Button
+    lateinit var textview1:TextView
+    lateinit var editText1:EditText
+
+    //
 
 
     lateinit var edtMovieTitle: EditText
@@ -48,6 +58,16 @@ class newFeelim : AppCompatActivity() {
         edtPlace = findViewById(R.id.edtPlace)
 
         addFeelim = findViewById(R.id.addFeelim)
+
+        //감상평 변수선언
+        listview1=findViewById(R.id.listview1)
+        button1 = findViewById(R.id.button1)
+        button2 = findViewById(R.id.button2)
+        button3 = findViewById(R.id.button3)
+        button4 = findViewById(R.id.button4)
+        textview1=findViewById(R.id.textview1)
+        editText1=findViewById(R.id.editText1)
+        //
 
 
 
@@ -157,6 +177,7 @@ class newFeelim : AppCompatActivity() {
                     + genreS.toInt() + "','"
                     + starNum + "','"
                     + placeS.toInt()
+                    + "','" + listview1.toString()
                     + "');") // DB에 저장 (제목, 시작날짜, 종료날짜, 장르, 평점, 장소/플랫폼)
             sqlDB.close()
 
@@ -166,6 +187,50 @@ class newFeelim : AppCompatActivity() {
             intent.putExtra("intent_name", edtMovieTitle.text.toString())
             startActivity(intent)
         }
+
+        //감상평기능 -start
+        listview1.choiceMode =ListView.CHOICE_MODE_SINGLE
+        val items= ArrayList<String>()
+        val arrayAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_single_choice,
+            items
+        )
+        listview1.adapter = arrayAdapter
+        listview1.setOnItemClickListener{parent, view, position, id ->
+            textview1.text = "'  "+listview1.getItemAtPosition(position)as CharSequence+"  '"
+        }
+
+        button1.setOnClickListener(){
+            items.add(""+editText1.text) //추가
+            arrayAdapter.notifyDataSetChanged() //배열어댑터에게 데이터정보가 변경되었음을 알림
+
+        }
+
+        button2.setOnClickListener(){
+            val check = listview1.checkedItemPosition
+            if(check >-1) { //체크된값이 있을경우
+                items[check] = "" + editText1.text //수정
+
+                arrayAdapter.notifyDataSetChanged()
+            }
+        }
+
+        button3.setOnClickListener(){
+            val check = listview1.checkedItemPosition
+            if(check >-1){
+                items.removeAt(check) //삭제
+                listview1.clearChoices() // 지워진 정보에 대해서 수정이 일어나지 않도록 방지하기위해
+                arrayAdapter.notifyDataSetChanged()
+            }
+        }
+
+        button4.setOnClickListener(){
+            items.clear() //초기화
+            arrayAdapter.notifyDataSetChanged()
+        }
+
+        //감상평 기능 -end
 
     }
     //메뉴 추가

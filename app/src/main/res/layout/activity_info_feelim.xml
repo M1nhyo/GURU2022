@@ -272,10 +272,11 @@
             // 감상평 작성
 
 
-            <TextView
+            <ListView
+                android:id="@+id/listview1"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:textColor="#FFFFFF"></TextView>
+                android:layout_height="397dp"
+                android:background="#282727" />
         </LinearLayout>
     </ScrollView>
 

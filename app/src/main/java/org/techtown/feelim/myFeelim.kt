@@ -53,6 +53,7 @@ class myFeelim : AppCompatActivity() {
             var FdbGenre = cursor.getInt(cursor.getColumnIndex("mvGenre")).toInt()
             var FdbPlace = cursor.getInt(cursor.getColumnIndex("mvPlace")).toInt()
             var FdbScore = cursor.getString(cursor.getColumnIndex("mvScore")).toString()
+            var FdbMemo= cursor.getString(cursor.getColumnIndex("myMemo")).toString()
 
 
             var layout_item: LinearLayout = LinearLayout(this)
