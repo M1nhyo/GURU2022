@@ -77,7 +77,7 @@ class myFeelim : AppCompatActivity() {
             tvMovieTitle.text = FdbMovieTitle
             layout_item_01.addView(tvMovieTitle)
             tvMovieTitle.setTextColor(Color.parseColor("#46BC8F"))
-            tvMovieTitle.setTextSize(Dimension.SP, 16F)
+            tvMovieTitle.setTextSize(Dimension.SP, 14F)
             tvMovieTitle.setPadding(40,20,0,0)
             tvMovieTitle.setTypeface(tvMovieTitle.typeface, Typeface.BOLD)
             num2++

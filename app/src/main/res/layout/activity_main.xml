@@ -34,7 +34,8 @@
                         android:text="@string/mv_prefer"
                         android:textColor="#46BC8F"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/scdream6"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -58,7 +59,8 @@
                         android:text="@string/mv_open"
                         android:textColor="#46BC8F"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/scdream6"/>
 
 
                     <LinearLayout
@@ -81,7 +83,8 @@
                         android:text="@string/mv_popular"
                         android:textColor="#46BC8F"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/scdream6"/>
 
 
 
@@ -108,7 +111,8 @@
                         android:text="@string/mv_high"
                         android:textColor="#46BC8F"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/scdream6"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"

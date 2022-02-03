@@ -27,7 +27,7 @@
             android:text="NEW FEEL:IM"
             android:textColor="#46BC8F"
             android:textSize="14sp"
-            android:textStyle="normal|bold" />
+            android:fontFamily="@font/scdream6" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/removeFeelim"
-            android:layout_width="45dp"
+            android:layout_width="wrap_content"
             android:layout_height="14dp"
             android:layout_marginRight="16dp"
             android:gravity="right|top"
@@ -68,7 +68,7 @@
 
                 <TextView
                     android:id="@+id/movieTitle"
-                    android:layout_width="48dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="14dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
@@ -292,7 +292,8 @@
             android:text="저장하기"
             app:backgroundTint="@color/feelim_01"
             app:elevation="0dp"
-            app:iconPadding="0dp" />
+            app:iconPadding="0dp"
+            android:fontFamily="@font/scdream6"/>
     </LinearLayout>
 </LinearLayout>
 
