@@ -8,27 +8,9 @@
     android:orientation="vertical"
     tools:context=".newFeelim">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-        // 로고
-
-        <View
-            android:id="@+id/logo"
-            android:layout_width="128dp"
-            android:layout_height="32dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="16dp"
-            android:background="#46BC8F" />
-    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:layout_weight="1">
 
@@ -55,20 +37,6 @@
                     android:textSize="14sp"
                     android:textStyle="normal|bold" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/removeFeelim"
-                    android:layout_width="45dp"
-                    android:layout_height="14dp"
-                    android:layout_marginRight="16dp"
-                    android:gravity="right|top"
-                    android:text="삭제하기"
-                    android:textColor="#46BC8F"
-                    android:textSize="12sp" />
             </LinearLayout>
 
             // 영화 정보 작성 칸 (제목, 날짜, 장르, 별점, 장소/플랫폼)
@@ -273,21 +241,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"></LinearLayout>
-
-                    <TextView
-                        android:id="@+id/movieList"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|right"
-
-                        android:gravity="bottom"
-                        android:text="영화 리스트 (임시 버튼)"
-                        android:textColor="#46BC8F"
-                        android:textSize="9sp" />
                 </LinearLayout>
             </LinearLayout>
 

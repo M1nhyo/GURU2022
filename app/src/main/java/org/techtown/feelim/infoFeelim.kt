@@ -21,11 +21,10 @@ import java.util.*
 class infoFeelim : AppCompatActivity() {
 
     var dateString = ""
-    var starNum = 0.0
+    var starNum = ""
     var genreS = 0
     var placeS = 0
 
-    lateinit var logo: View
     lateinit var removeFeelim: TextView
     lateinit var addFeelim: Button
     lateinit var detail_mv: TextView
@@ -53,7 +52,6 @@ class infoFeelim : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info_feelim)
 
-        logo = findViewById(R.id.logo)
         addFeelim = findViewById(R.id.addFeelim)
         removeFeelim = findViewById(R.id.removeFeelim)
         detail_mv = findViewById(R.id.detail_mv)
@@ -80,6 +78,7 @@ class infoFeelim : AppCompatActivity() {
             FdbFinishDate = cursor.getString(cursor.getColumnIndex("mvFinishDate")).toString()
             FdbGenre = cursor.getInt(cursor.getColumnIndex("mvGenre")).toInt()
             FdbPlace = cursor.getInt(cursor.getColumnIndex("mvPlace")).toInt()
+            FdbScore = cursor.getString(cursor.getColumnIndex("mvScore")).toString()
         }
 
         cursor.close()
@@ -90,13 +89,6 @@ class infoFeelim : AppCompatActivity() {
         edtStartDate.text = FdbStartDate
         edtFinishDate.text = FdbFinishDate
 
-
-        // 로고 (클릭 시 메인 화면으로 이동)
-        // 위치만 수정 필요 (Home)
-        logo.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
 
         // 시작 날짜
         edtStartDate.setOnClickListener {
@@ -154,8 +146,11 @@ class infoFeelim : AppCompatActivity() {
         }
 
         // 별점
+        edtScore.rating = FdbScore.toFloat()
+
         edtScore.setOnRatingBarChangeListener { _, rating, _ ->
             edtScore.rating = rating
+            starNum = "${rating}"
         }
 
         // 장소
@@ -192,7 +187,7 @@ class infoFeelim : AppCompatActivity() {
                     + edtStartDate.text.toString() + "','"
                     + edtFinishDate.text.toString() + "','"
                     + genreS.toInt() + "','"
-                    + starNum.toDouble() + "','"
+                    + starNum + "','"
                     + placeS.toInt()
                     + "');") // DB에 저장 (제목, 시작날짜, 종료날짜, 장르, 평점, 장소/플랫폼)
             sqlDB.close()
@@ -210,10 +205,12 @@ class infoFeelim : AppCompatActivity() {
 
             Toast.makeText(applicationContext,"삭제되었습니다.", Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, myFeelim::class.java)
             startActivity(intent)
         }
 
+
+        // 영화정보 더보기
         detail_mv.setOnClickListener {
             val intent = Intent(this, moreInfo::class.java)
             intent.putExtra("intent_name", edtMovieTitle.text.toString())

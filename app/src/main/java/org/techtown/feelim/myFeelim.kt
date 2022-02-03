@@ -1,9 +1,12 @@
 package org.techtown.feelim
 
+import android.app.Notification
+import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Color
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -11,18 +14,18 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.RatingBar
 import android.widget.TextView
+import androidx.annotation.Dimension
+import androidx.core.content.withStyledAttributes
 import org.techtown.feelim.DBManager
 import org.techtown.feelim.MainActivity
 import org.techtown.feelim.R
 
 class myFeelim : AppCompatActivity() {
-    lateinit var logo: View
-
     lateinit var dbManager: DBManager
     lateinit var sqlitedb: SQLiteDatabase
     lateinit var layout: LinearLayout
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,17 +34,9 @@ class myFeelim : AppCompatActivity() {
         dbManager = DBManager(this, "movieList", null, 1)
         sqlitedb = dbManager.readableDatabase
 
-        logo = findViewById(R.id.logo)
 
         layout = findViewById(R.id.myFeelimLL)
 
-
-        // 로고 (클릭 시 메인 화면으로 이동)
-        // 위치만 수정 필요 (Home)
-        logo.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
 
         var cursor: Cursor
         cursor = sqlitedb.rawQuery("SELECT * FROM movieList", null)
@@ -50,7 +45,6 @@ class myFeelim : AppCompatActivity() {
         var num2: Int = 0
         var num3: Int = 0
 
-
         while (cursor.moveToNext()) {
 
             var FdbMovieTitle = cursor.getString(cursor.getColumnIndex("mvTitle")).toString()
@@ -58,50 +52,70 @@ class myFeelim : AppCompatActivity() {
             var FdbFinishDate = cursor.getString(cursor.getColumnIndex("mvFinishDate")).toString()
             var FdbGenre = cursor.getInt(cursor.getColumnIndex("mvGenre")).toInt()
             var FdbPlace = cursor.getInt(cursor.getColumnIndex("mvPlace")).toInt()
+            var FdbScore = cursor.getString(cursor.getColumnIndex("mvScore")).toString()
 
 
             var layout_item: LinearLayout = LinearLayout(this)
             layout_item.orientation = LinearLayout.VERTICAL
             layout_item.id = num
-            layout_item.setBackgroundColor(Color.GRAY)
+            layout_item.setPadding(0,0,0,30)
 
             var layout_item_01: LinearLayout = LinearLayout(this)
             layout_item_01.orientation = LinearLayout.HORIZONTAL
             layout_item_01.id = num2
             layout_item.addView(layout_item_01)
+            layout_item_01.setBackgroundColor(Color.parseColor("#333333"))
 
             var layout_item_02: LinearLayout = LinearLayout(this)
             layout_item_02.orientation = LinearLayout.HORIZONTAL
             layout_item_02.id = num3
             layout_item.addView(layout_item_02)
+            layout_item_02.setBackgroundColor(Color.parseColor("#333333"))
 
+            // context
             var tvMovieTitle: TextView = TextView(this)
             tvMovieTitle.text = FdbMovieTitle
             layout_item_01.addView(tvMovieTitle)
-            tvMovieTitle.setTextColor(Color.WHITE)
+            tvMovieTitle.setTextColor(Color.parseColor("#46BC8F"))
+            tvMovieTitle.setTextSize(Dimension.SP, 16F)
+            tvMovieTitle.setPadding(40,20,0,0)
+            tvMovieTitle.setTypeface(tvMovieTitle.typeface, Typeface.BOLD)
             num2++
 
-            var tvStartDate: TextView = TextView(this)
-            tvStartDate.text = FdbStartDate
-            layout_item_02.addView(tvStartDate)
-            tvMovieTitle.setTextColor(Color.WHITE)
-            num3++
-
-            var tvFinishDate: TextView = TextView(this)
-            tvFinishDate.text = FdbFinishDate
-            layout_item_02.addView(tvFinishDate)
-            tvMovieTitle.setTextColor(Color.WHITE)
-            num3++
-
-            /*
             var tvGenre: TextView = TextView(this)
-            tvGenre.text = R.array.genreList
-            layout_item.addView(tvGenre)
+            var gr = resources.getStringArray(R.array.genreList)
+            tvGenre.text = gr[FdbGenre]
+            layout_item_01.addView(tvGenre)
+            tvGenre.setTextColor(Color.parseColor("#CDCDCD"))
+            tvGenre.setTextSize(Dimension.SP, 10F)
+            tvGenre.setPadding(20,20,0,0)
+            num2++
 
-            var tvMovieTitle: TextView = TextView(this)
-            tvMovieTitle.text = FdbMovieTitle
-            layout_item.addView(tvMovieTitle)
-            */
+            //var tvScore = RatingBar(this)
+            //tvScore.rating = FdbScore.toFloat()
+            //layout_item_01.addView(tvScore)
+            //tvScore.setPadding(20,20,0,0)
+            //num2++
+
+
+            var tvDate: TextView = TextView(this)
+            tvDate.text = FdbStartDate + " ~ " + FdbFinishDate
+            layout_item_02.addView(tvDate)
+            tvDate.setTextColor(Color.WHITE)
+            tvDate.setTextSize(Dimension.SP,12F)
+            tvDate.setPadding(40,20,0,20)
+            num3++
+
+            // 감상평 개수 추가
+            var tvReview: TextView = TextView(this)
+            tvReview.text = "n개의 감상평"
+            layout_item_02.addView(tvReview)
+            tvReview.setTextColor(Color.WHITE)
+            tvReview.setTextSize(Dimension.SP,12F)
+            tvReview.setPadding(20,20,0,20)
+            num3++
+
+
 
             layout_item.setOnClickListener {
                 val intent = Intent(this, infoFeelim::class.java)
@@ -117,6 +131,9 @@ class myFeelim : AppCompatActivity() {
         sqlitedb.close()
         dbManager.close()
     }
+
+
+
 
     //메뉴 추가
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

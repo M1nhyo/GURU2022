@@ -8,28 +8,11 @@
     android:background="@color/black"
     tools:context=".newFeelim">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-        // 로고
-
-        <View
-            android:id="@+id/logo"
-            android:layout_width="128dp"
-            android:layout_height="32dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="16dp"
-            android:background="#46BC8F" />
-    </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
         android:orientation="horizontal">
 
         <TextView
@@ -58,26 +41,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            >
+            android:paddingBottom="16dp">
+
 
         </LinearLayout>
 
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/addFeelim"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_weight="1"
-            app:backgroundTint="@color/feelim_01"
-            app:elevation="0dp"
-            app:iconPadding="0dp" />
-    </LinearLayout>
 </LinearLayout>
 
 

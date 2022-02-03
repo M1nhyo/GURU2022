@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.techtown.feelim">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,9 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Feelim">
-        <activity android:name=".myFeelim"></activity>
-        <activity android:name=".newFeelim"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".listViewItem"></activity>
+        <activity android:name=".listViewAdapter" />
+        <activity android:name=".myfeelimlist" />
+        <activity
+            android:name=".MainActivity3"
+            android:label="@string/title_activity_main3"
+            android:theme="@style/Theme.Feelim.NoActionBar" />
+        <activity android:name=".MainActivity2" />
+        <activity android:name=".myfeelim02" />
+        <activity android:name=".myFeelim" />
+        <activity
+            android:name=".newFeelim"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".infoFeelim"
             android:windowSoftInputMode="stateHidden|adjustPan" />
@@ -26,7 +35,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".moreInfo" />
-
     </application>
 
 </manifest>

@@ -1,35 +1,24 @@
 package org.techtown.feelim
 
 import android.app.DatePickerDialog
-import android.content.Context
 import android.content.Intent
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
-import androidx.core.view.get
-import org.techtown.feelim.DBManager
-import org.techtown.feelim.MainActivity
-import org.techtown.feelim.R
 //import com.example.guru2022.databinding.ActivityMainBinding
 import java.util.*
-import kotlin.properties.Delegates
 
 class newFeelim : AppCompatActivity() {
 
     var dateString = ""
-    var starNum = 0.0
+    var starNum = ""
     var genreS = 0
     var placeS = 0
 
-    lateinit var logo: View
-    lateinit var removeFeelim: TextView
 
     lateinit var edtMovieTitle: EditText
     lateinit var edtStartDate: TextView
@@ -43,7 +32,6 @@ class newFeelim : AppCompatActivity() {
     lateinit var myHelper: DBManager
     lateinit var sqlDB: SQLiteDatabase
 
-    lateinit var movieList: TextView // 임시
 
 
 
@@ -51,10 +39,6 @@ class newFeelim : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_feelim)
 
-
-
-        logo = findViewById(R.id.logo)
-        removeFeelim = findViewById(R.id.removeFeelim)
 
         edtMovieTitle = findViewById(R.id.edtMovieTitle)
         edtStartDate = findViewById(R.id.edtStartDate)
@@ -65,22 +49,12 @@ class newFeelim : AppCompatActivity() {
 
         addFeelim = findViewById(R.id.addFeelim)
 
-        movieList = findViewById(R.id.movieList) // 임시
-        movieList.setOnClickListener {
-            val intent = Intent(this, myFeelim::class.java)
-            startActivity(intent)
-        }
+
 
 
         // DB
         myHelper = DBManager(this, "movieList", null, 1)
 
-        // 로고 (클릭 시 메인 화면으로 이동)
-        // 위치만 수정 필요 (Home)
-        logo.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
 
         // 시작 날짜
         edtStartDate.setOnClickListener {
@@ -143,8 +117,8 @@ class newFeelim : AppCompatActivity() {
         // 별점
         edtScore.setOnRatingBarChangeListener { _, rating, _ ->
             edtScore.rating = rating
+            starNum = "${rating}"
         }
-        starNum = edtScore.getNumStars().toDouble()
 
 
         // 장소
@@ -181,7 +155,7 @@ class newFeelim : AppCompatActivity() {
                     + edtStartDate.text.toString() + "','"
                     + edtFinishDate.text.toString() + "','"
                     + genreS.toInt() + "','"
-                    + starNum.toDouble() + "','"
+                    + starNum + "','"
                     + placeS.toInt()
                     + "');") // DB에 저장 (제목, 시작날짜, 종료날짜, 장르, 평점, 장소/플랫폼)
             sqlDB.close()
