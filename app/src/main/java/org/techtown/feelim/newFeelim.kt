@@ -198,7 +198,7 @@ class newFeelim : AppCompatActivity() {
         )
         listview1.adapter = arrayAdapter
         listview1.setOnItemClickListener{parent, view, position, id ->
-            textview1.text = "'  "+listview1.getItemAtPosition(position)as CharSequence+"  '"
+            textview1.text = listview1.getItemAtPosition(position)as CharSequence
         }
 
         button1.setOnClickListener(){
