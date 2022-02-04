@@ -36,7 +36,8 @@ class infoFeelim : AppCompatActivity() {
     lateinit var edtGenre: Spinner
     lateinit var edtScore: RatingBar
     lateinit var edtPlace: Spinner
-    lateinit var editText1:EditText
+   // lateinit var textview1:TextView
+    //lateinit var editText1:EditText
     lateinit var Review:TextView
 
     lateinit var FdbMemo:String

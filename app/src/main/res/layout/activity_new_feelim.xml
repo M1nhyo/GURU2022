@@ -251,7 +251,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:focusable="auto"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold|italic" />
