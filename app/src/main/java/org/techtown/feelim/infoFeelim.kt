@@ -36,7 +36,10 @@ class infoFeelim : AppCompatActivity() {
     lateinit var edtGenre: Spinner
     lateinit var edtScore: RatingBar
     lateinit var edtPlace: Spinner
+    lateinit var editText1:EditText
+    lateinit var Review:TextView
 
+    lateinit var FdbMemo:String
     lateinit var FdbMovieTitle: String
     lateinit var FdbStartDate: String
     lateinit var FdbFinishDate: String
@@ -57,6 +60,7 @@ class infoFeelim : AppCompatActivity() {
         removeFeelim = findViewById(R.id.removeFeelim)
         detail_mv = findViewById(R.id.detail_mv)
         myfeelimTitle = findViewById(R.id.myfeelimTitle)
+        Review=findViewById(R.id.Review)
 
         edtMovieTitle = findViewById(R.id.edtMovieTitle)
         edtStartDate = findViewById(R.id.edtStartDate)
@@ -81,6 +85,7 @@ class infoFeelim : AppCompatActivity() {
             FdbGenre = cursor.getInt(cursor.getColumnIndex("mvGenre")).toInt()
             FdbPlace = cursor.getInt(cursor.getColumnIndex("mvPlace")).toInt()
             FdbScore = cursor.getString(cursor.getColumnIndex("mvScore")).toString()
+            FdbMemo = cursor.getString(cursor.getColumnIndex("myMemo")).toString()
         }
 
         cursor.close()
@@ -90,6 +95,8 @@ class infoFeelim : AppCompatActivity() {
         edtMovieTitle.setText(FdbMovieTitle)
         edtStartDate.text = FdbStartDate
         edtFinishDate.text = FdbFinishDate
+        Review.text=FdbMemo
+
 
 
         // 시작 날짜

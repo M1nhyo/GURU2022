@@ -178,7 +178,7 @@ class newFeelim : AppCompatActivity() {
                     + genreS.toInt() + "','"
                     + starNum + "','"
                     + placeS.toInt()
-                    + "','" + listview1.toString()
+                    + "','" + editText1.text.toString()
                     + "');") // DB에 저장 (제목, 시작날짜, 종료날짜, 장르, 평점, 장소/플랫폼)
             sqlDB.close()
 

@@ -271,11 +271,29 @@
             // 감상평 작성
 
 
-            <ListView
-                android:id="@+id/listview1"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="397dp"
-                android:background="#282727" />
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/scdream6"
+                android:text="나의 감상평"
+                android:textColor="@color/feelim_01"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/Review"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:text="임시로"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp" />
         </LinearLayout>
     </ScrollView>
 
