@@ -23,7 +23,6 @@ class moreInfo : AppCompatActivity() {
         if(intent.hasExtra("intent_name")){
             val mvName = intent.getStringExtra("intent_name")
             val url = "https://search.daum.net/search?q=$mvName&w=tot&DA=S43"
-            //val url = "https://movie.daum.net/search?q=$mvName&w=tot&DA=S43"
 
             //웹뷰 처리
             println("영화 이름 : " + mvName)

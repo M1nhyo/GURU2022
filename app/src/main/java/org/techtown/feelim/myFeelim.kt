@@ -117,17 +117,6 @@ class myFeelim : AppCompatActivity() {
             tvDate.setPadding(40, 20, 0, 20)
             num3++
 
-            // 감상평 개수 추가
-            var tvReview: TextView = TextView(this)
-            tvReview.text = "n개의 감상평"
-            layout_item_02.addView(tvReview)
-            tvReview.setTextColor(Color.WHITE)
-            tvReview.setTextSize(Dimension.SP, 12F)
-            tvReview.setPadding(20, 20, 0, 20)
-            num3++
-
-
-
             layout_item.setOnClickListener {
                 val intent = Intent(this, infoFeelim::class.java)
                 intent.putExtra("intent_name", FdbMovieTitle)
